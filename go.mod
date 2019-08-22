@@ -1,4 +1,4 @@
-module github.com/entropyx/k8-letsencrypt
+module github.com/entropyx/lek8
 
 go 1.12
 
