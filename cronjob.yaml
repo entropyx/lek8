@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: letsencrypt
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: letsencrypt
+          containers:
+          - name: letsencrypt
+            image: entropyx/lek8:0.1.0
+            args:
+            - lek8
+            - -t
+            - -p digitalocean
+            - -e daniel@entropy.tech
+            - -s letsencrypt
+            - -d entropy.tech
+            - -d www.entropy.tech
+            env:
+            - name: DO_AUTH_TOKEN
+              value: DigitalOceanToken
